@@ -2,9 +2,9 @@
 
 import React, { useState } from 'react';
 
-const PromoPopup = ({test}:{test:string}) => {
+const PromoPopup = () => {
   const [name, setName] = useState('');
-  const [isVisible, setIsVisible] = useState(test ?? true);
+  const [isVisible, setIsVisible] = useState(true);
 
   const handleInputChange = (e: { target: { value: React.SetStateAction<string>; }; }) => {
     setName(e.target.value);
