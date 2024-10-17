@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import ButtonGroup from "../components/GroupButton";
 import Image, { StaticImageData } from "next/image";
@@ -73,7 +73,7 @@ export default function Home() {
   const [verify, setVerify] = useState<IQ>({ "q1": false } as IQ)
   const [resetButton1, setResetButton1] = useState(false)
   const [resetButton2, setResetButton2] = useState(false)
-  const [name, setName] = useState(localStorage.getItem("promoName"));
+  const [name, setName] = useState(typeof window !== "undefined" ? window.localStorage.getItem("promoName") : "");
   const [rating, setRating] = useState<number>(0);
 
   const router = useRouter();
@@ -84,9 +84,6 @@ export default function Home() {
     setVerify({ "q1": true })
     setSelectedOption(value);
   };
-
-  
-
 
   return (
     <>
@@ -100,7 +97,7 @@ export default function Home() {
           <PiUserCircleFill className="w-10 h-10 ml-5" />
         </div>
       </header>
-      {name ? null : <PromoPopup />}
+      <PromoPopup test= {name} />
       <main className="flex flex-col items-center justify-between  h-auto md:px-24 sm:p-0 lg:px-24">
         <div className="flex items-center justify-center bg-red3  h-full px-5 w-full md:px-20 sm:p-5 lg:px-20 bg-gray-50">
           <div className="flex flex-col justify-center items-center gap-5 rounded-lg bg-white h-1/2 w-full  p-4 my-10 md:p-5 lg:p-10 text-black">

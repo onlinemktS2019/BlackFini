@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 // import ButtonGroup from "@/components/GroupButton";
 import Image, { StaticImageData } from "next/image";
@@ -33,12 +33,11 @@ export default function Home() {
   const [count, setCount] = useState(0)
   const [button, setButton] = useState(0)
   const router = useRouter();
-  const [name, setName] = useState(localStorage.getItem("promoName"));
+  const [name, setName] = useState(typeof window !== "undefined" ? window.localStorage.getItem("promoName") : "");
 
   const handleRatingChange = (newRating: number) => {
     setButton((butt) => (butt + 1))
     console.log(button);
-
   };
 
   return (
