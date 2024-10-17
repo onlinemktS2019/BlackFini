@@ -3,7 +3,7 @@
 import ButtonGroup from "../components/GroupButton";
 import Image, { StaticImageData } from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RxTextAlignJustify } from "react-icons/rx";
 import logo from '../../public/image/logo.png';
 import image1 from '../../public/image/image1.jpg';
@@ -73,7 +73,7 @@ export default function Home() {
   const [verify, setVerify] = useState<IQ>({ "q1": false } as IQ)
   const [resetButton1, setResetButton1] = useState(false)
   const [resetButton2, setResetButton2] = useState(false)
-
+  const [name, setName] = useState(localStorage.getItem("promoName"));
   const [rating, setRating] = useState<number>(0);
 
   const router = useRouter();
@@ -85,7 +85,9 @@ export default function Home() {
     setSelectedOption(value);
   };
 
-  let name = localStorage.getItem("promoName")
+  
+
+
   return (
     <>
       <header className="flex flex-row bg-red2 justify-between items-center gap-10 h-16 bg-red-400 ">

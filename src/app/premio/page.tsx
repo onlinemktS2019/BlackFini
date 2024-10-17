@@ -33,13 +33,14 @@ export default function Home() {
   const [count, setCount] = useState(0)
   const [button, setButton] = useState(0)
   const router = useRouter();
+  const [name, setName] = useState(localStorage.getItem("promoName"));
 
   const handleRatingChange = (newRating: number) => {
     setButton((butt) => (butt + 1))
     console.log(button);
 
   };
-  let name = localStorage.getItem("promoName")
+
   return (
     <>
       <header className="flex flex-row bg-red2 justify-between items-center gap-10 h-16 bg-red-400 ">

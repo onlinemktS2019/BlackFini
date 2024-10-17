@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from 'react';
 
 const PromoPopup = () => {
@@ -10,7 +12,7 @@ const PromoPopup = () => {
 
   const handleSubmit = () => {
     if (name) {
-      localStorage.setItem('promoName', name); // Salva o nome no LocalStorage
+      window.localStorage.setItem('promoName', name); // Salva o nome no LocalStorage
       alert('Nome salvo! Boa sorte!');
       location.reload()
       setIsVisible(false); // Fecha o popup
