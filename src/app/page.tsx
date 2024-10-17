@@ -69,12 +69,15 @@ export default function Home() {
   // [["Balas de gelatina"," Chocolates"," Sorvetes"," Biscoitos"], ["1960","2000","1970"," 1988"], ["Quiosque Fini","Fini Store","Fini World","Fini Station"],["Morango","Uva","Cereja","Limão"],["Hallofini","Finiween","Doces ou Travessuras Fini","Balas Assombradas"],["Gelatina","Açúcar","Ágar-ágar","Mel"],["Mais de 300","Cerca de 100","Mais de 200"," Apenas 50"]]
 
   const [count, setCount] = useState(0)
-  const [button, setButton] = useState(0)
   const [verify, setVerify] = useState<IQ>({ "q1": false } as IQ)
-  const [resetButton1, setResetButton1] = useState(false)
-  const [resetButton2, setResetButton2] = useState(false)
-  const [name, setName] = useState(typeof window !== "undefined" ? window.localStorage.getItem("promoName") : "");  const [rating, setRating] = useState<number>(0);
+  const [name, setName] = useState(undefined);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedName = window.localStorage.getItem("promoName");
+      setName(storedName || undefined);
+    }
+  }, []);
   const router = useRouter();
 
   const [selectedOption, setSelectedOption] = useState('');
@@ -84,8 +87,6 @@ export default function Home() {
     setSelectedOption(value);
   };
 
- console.log(typeof name)
- console.log(name)
   return (
     <>
       <header className="flex flex-row bg-red2 justify-between items-center gap-10 h-16 bg-red-400 ">
@@ -106,18 +107,7 @@ export default function Home() {
             <Image src={text[count].img} alt={""} className="rounded-md" />
             <p className="font-bold text-xl text-center">Pertunta {count + 1} de 7</p>
             <p className="font-bold text-2xl text-center">{text[count].primeiro}</p>
-            {/* <StarRating maxRating={5} onRatingChange={handleRatingChange} setRating={setRating} rating={rating}/> */}
             <ButtonGroup btn1={text[count].primeiraQ} selectedOption={selectedOption} handleOptionChange={handleOptionChange} />
-            {/* <ButtonGroup titulo={text[count].segundaQ.titulo} btn1={text[count].segundaQ.btn1} btn2={text[count].segundaQ.btn2} setButton={setButton} setVerify={setVerify} question={2} setReset={setResetButton2} reset={resetButton2}/> */}
-
-            {/* <button className="w-60 h-20 bg-gray-50 rounded-lg"
-              onClick={() => {
-                count < text.length - 1 ? setCount(count + 1) : router.push("/oldindex.html");
-              }}
-
-            >
-              Enviar avaliação
-            </button> */}
 
             <button className="h-20 bg-red-400 rounded-lg font-bold text-lg w-full hover:bg-red2 hover:text-white transition delay-150 text-white"
               onClick={() => {
@@ -127,7 +117,6 @@ export default function Home() {
                     (setCount(count + 1), setVerify({ "q1": false })) : alert("Selecione uma opção")
                   : router.push("/premio");
               }}
-            // disabled={verify.q1 ? false : true}
             >
               Enviar avaliação
             </button>

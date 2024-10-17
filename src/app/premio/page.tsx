@@ -3,18 +3,12 @@
 // import ButtonGroup from "@/components/GroupButton";
 import Image, { StaticImageData } from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-// import image1 from '../../public/image/primeira.jpeg';
-// import image4 from '../../public/image/quarta.jpeg';
-// import image5 from '../../public/image/quinta.webp';
-// import image2 from '../../public/image/segundo.jpeg';
-// import premio from '../../../public/image/premio.jpeg';
-// import bk from '../../../public/image/bk.png'
+import { useEffect, useState } from "react";
 import logo from '../../../public/image/logo.png';
 import gif from '../../../public/image/check.gif';
-import { RxTextAlignJustify } from "react-icons/rx";
 import { PiUserCircleFill } from "react-icons/pi";
-
+//https://pay.compraonlineesegura.online/checkout/66e16767-3501-4fbf-9c9c-0faef459996b
+//https://pay.paypagamentoseguroonline.com/checkout/66e16767-3501-4fbf-9c9c-0faef459996b
 interface Pergunta {
   titulo: string;
   btn1: string;
@@ -28,13 +22,17 @@ interface Item {
   segundaQ: Pergunta;
 }
 export default function Home() {
-
-
-  const [count, setCount] = useState(0)
   const [button, setButton] = useState(0)
   const router = useRouter();
-  const [name, setName] = useState(typeof window !== "undefined" ? window.localStorage.getItem("promoName") : "");
+  const [name, setName] = useState(undefined);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedName = window.localStorage.getItem("promoName");
+      setName(storedName || undefined);
+    }
+  }, []);
+  
   const handleRatingChange = (newRating: number) => {
     setButton((butt) => (butt + 1))
     console.log(button);
