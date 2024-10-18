@@ -24,7 +24,7 @@ const PromoPopup = () => {
   if (!isVisible) return null; // Se o popup for fechado, ele não será renderizado
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+    <div className="fixed text-black inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-4/5">
         <h2 className="text-xl font-bold mb-4">Digite seu nome para participar da promoção</h2>
         <input
@@ -32,7 +32,7 @@ const PromoPopup = () => {
           value={name}
           onChange={handleInputChange}
           placeholder="Digite seu nome"
-          className="border border-gray-300 p-2 w-full rounded mb-4"
+          className="border border-gray-300 p-2 text-black w-full rounded mb-4"
         />
         <button
           onClick={handleSubmit}
